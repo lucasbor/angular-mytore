@@ -14,10 +14,18 @@ export class CartComponent implements OnInit {
                 private formBuilder: FormBuilder) {
 
     this.items = this.cartService.getItems();
-    this.checkoutForm = 
+    this.checkoutForm = this.formBuilder.group({name:'',address:''});
   }
 
-  
+  onSubmit(){
+    // Process checkout data here
+    console.warn('Your order has been submitted', this.checkoutForm.value);
+
+    this.items = [];
+    this.cartService.clear();
+    this.checkoutForm.reset();
+  }
+
   ngOnInit() {
     
   }
